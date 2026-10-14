@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>checking_01__c</fullName>
+    <label>checking_01</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Checked</fullName>
+                <default>false</default>
+                <label>Checked</label>
+            </value>
+            <value>
+                <fullName>Not-Checked</fullName>
+                <default>false</default>
+                <label>Not-Checked</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
