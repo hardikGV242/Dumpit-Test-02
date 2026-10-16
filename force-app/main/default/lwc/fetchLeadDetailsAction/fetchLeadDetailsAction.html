@@ -1,0 +1,6 @@
+<template>
+    <!-- Headless quick action requires an empty template or a simple spinner -->
+    <template if:true={isProcessing}>
+        <lightning-spinner alternative-text="Fetching Details..." size="medium"></lightning-spinner>
+    </template>
+</template>

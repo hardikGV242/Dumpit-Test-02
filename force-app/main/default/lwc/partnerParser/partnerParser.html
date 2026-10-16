@@ -1,0 +1,68 @@
+<template>
+    <lightning-card title="AppExchange Partner Parser" icon-name="standard:account">
+        <div class="slds-p-around_medium">
+            
+            <lightning-input 
+                type="file" 
+                label="Upload HTML File" 
+                accept=".html" 
+                onchange={handleFileChange}>
+            </lightning-input>
+            
+            <div class="slds-text-align_center slds-m-vertical_small">
+                <strong>OR</strong>
+            </div>
+
+            <lightning-textarea 
+                label="Paste HTML Element" 
+                value={htmlString} 
+                onchange={handleTextChange}
+                rows="5">
+            </lightning-textarea>
+
+            <div class="slds-m-top_medium slds-text-align_right">
+                <lightning-button 
+                    label="Parse & Save Partners" 
+                    variant="brand" 
+                    onclick={parseAndSave} 
+                    disabled={isProcessing}>
+                </lightning-button>
+            </div>
+
+            <!-- Execution Status Table -->
+            <template if:true={resultsList.length}>
+                <div class="slds-m-top_large">
+                    <h3 class="slds-text-heading_small slds-m-bottom_small">Processing Results</h3>
+                    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                        <thead>
+                            <tr class="slds-text-title_caps">
+                                <th scope="col"><div class="slds-truncate" title="Partner Name">Partner Name</div></th>
+                                <th scope="col"><div class="slds-truncate" title="Listing ID">Listing ID</div></th>
+                                <th scope="col"><div class="slds-truncate" title="Status">Status</div></th>
+                                <th scope="col"><div class="slds-truncate" title="Reason / Message">Reason / Message</div></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={resultsList} for:item="res">
+                                <tr key={res.listingId}>
+                                    <td><div class="slds-truncate">{res.partnerName}</div></td>
+                                    <td><div class="slds-truncate">{res.listingId}</div></td>
+                                    <td>
+                                        <template if:true={res.isSuccess}>
+                                            <span class="slds-badge slds-theme_success">Success</span>
+                                        </template>
+                                        <template if:false={res.isSuccess}>
+                                            <span class="slds-badge slds-theme_error">Failed</span>
+                                        </template>
+                                    </td>
+                                    <td><div class="slds-text-color_error">{res.message}</div></td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </template>
+            
+        </div>
+    </lightning-card>
+</template>
